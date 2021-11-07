@@ -33,10 +33,18 @@ def showall(lista):
     for obiect in lista:
         print(toString(obiect))
 
+def modify(id, nume, descriere, pret, locatie, lista):
+    try:
+        lista = modificaObiect(id, nume, descriere, pret, locatie, lista)
+    except ValueError as ve:
+        print("Eroare: ", ve)
+    print("Modificarea a fost facuta")
+    return lista
+
+
 
 def runNewMenu(lista):
     while True:
-        MenuHelp()
         optiune = input("Dati comenzile: ")
         optiuni = optiune.split(';')
         for comenzi in optiuni:
@@ -49,7 +57,14 @@ def runNewMenu(lista):
                 locatie = sir[5]
                 lista = add(id, nume, descriere, pret, locatie, lista)
             if sir[0] == "delete":
-                id = sir[1]
+                id = int(sir[1])
                 lista = delete(id, lista)
             if sir[0] == "showall":
                 showall(lista)
+            if sir[0] == "modify":
+                id = sir[1]
+                nume = sir[2]
+                descriere = sir[3]
+                pret = sir[4]
+                locatie = sir[5]
+                lista = modify(id, nume, descriere, pret, locatie, lista)
