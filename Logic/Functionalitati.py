@@ -9,6 +9,7 @@ def changeLocation(locatieVeche, locatieNoua, lista):
     :return:
     '''
 
+
     for obiect in lista:
         if getLocatie(obiect) == locatieVeche:
             obiect["locatie"] = locatieNoua

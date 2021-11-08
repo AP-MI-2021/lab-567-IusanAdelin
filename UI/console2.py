@@ -7,7 +7,7 @@ from UI.console import uiAdaugaObiect
 def MenuHelp():
     print("Spre exemplu pentru comenzi din"
           "CRUD:add,id, nume, descriere, pret, locatie")
-    print("Pentru afisarea tuturor obiectelor :show_all")
+    print("Pentru afisarea tuturor obiectelor :showall")
     print("Pentru mutarea dintr-o locatie in alta a obiectelor:mutare,locatie_initiala,locatie_noua")
     print("Iar pentru folosirea mai multor actiuni la o singura citire vom proceda astfel:add,id, nume, "
           "descriere, pret, locatie;show_all;mutare,locatieInitiala,locatieNoua")

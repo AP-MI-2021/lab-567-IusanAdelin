@@ -1,6 +1,6 @@
 from Domain.Obiect import toString
 from Logic.CRUD import adaugaObiect, stergeObiect, modificaObiect
-from Logic.Functionalitati import changeLocation
+from Logic.Functionalitati import changeLocation, PretMax
 
 
 def printMenu():
