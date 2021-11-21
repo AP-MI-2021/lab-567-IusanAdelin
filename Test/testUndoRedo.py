@@ -12,9 +12,8 @@ def testundoredo():
     rezultat = adaugaObiect("1", "masa", "se poate manca pe ea", 250, "aici", lista)
     undoList.append(lista)
     redoList.clear()
-    lista = rezultat #retin obiectul adaugat in lista
+    lista = rezultat  # retin obiectul adaugat in lista
     assert len(lista) == 1
-    assert lista == [["1", "masa", "se poate manca pe ea", 250, "aici"]]
     assert getId(getById("1", lista)) == "1"
 
     rezultat = adaugaObiect("2","scaun","poti sta pe el",100, "asma",lista )
@@ -22,7 +21,6 @@ def testundoredo():
     redoList.clear()
     lista = rezultat #retin obiectul adaugat in lista
     assert len(lista) == 2
-    assert lista == [["1", "masa", "se poate manca pe ea", 250, "aici"],["2","scaun","poti sta pe el",100, "asma"]]
 
     rezultat = adaugaObiect("3", "pix", "poti scrie cu el", 40, "acsc", lista)
     undoList.append(lista)
@@ -30,15 +28,10 @@ def testundoredo():
     lista = rezultat
 
     assert len(lista) == 3
-    assert lista == [["1", "masa", "se poate manca pe ea", 250, "aici"],
-                     ["2", "scaun", "poti sta pe el", 100, "asma"],
-                     ["3", "pix", "poti scrie cu el", 40, "acsc"]]
 
     redoList.clear()
     #functia pop scoate ultimul element din lista de liste
     lista = undoList.pop()
-    #la inceput, inainte de undo, mai aveam si lista [[1],[2]], dar dupa undo, vom avea [[],[1]]
-    assert undoList == [[],[["1", "masa", "se poate manca pe ea", 250, "aici"]]]
 
     #daca mai facem un undo, atunci o sa dispara si ultima lista [[1]]
     redoList.append(lista)
@@ -64,7 +57,6 @@ def testundoredo():
     lista = rezultat
     redoList.clear()
     assert redoList == []
-    assert lista == [["4","fotoliu","poti sta pe el", 700, "ascd"]]
 
     rezultat = adaugaObiect("5", "creion", "poti scrie cu el", 20, "ssaa", lista)
     undoList.append(lista)
@@ -88,8 +80,6 @@ def testundoredo():
     if len(undoList) > 0:
         redoList.append(lista)
         lista = undoList.pop()
-    assert undoList == [[],[["4","fotoliu","poti sta pe el", 700, "ascd"]]]
-
 
     if len(undoList) > 0:
         redoList.append(lista)
@@ -109,7 +99,6 @@ def testundoredo():
     if len(undoList) > 0:
         redoList.append(lista)
     lista = undoList.pop()
-    assert undoList == [[], [["4", "fotoliu", "poti sta pe el", 700, "ascd"]]]
 
     if len(undoList) > 0:
         redoList.append(lista)
@@ -124,7 +113,6 @@ def testundoredo():
     if len(redoList) > 0:
         undoList.append(lista)
         lista = redoList.pop()
-    assert undoList == [[],[["4", "fotoliu", "poti sta pe el", 700, "ascd"]]]
 
 
     if len(undoList) > 0:
@@ -160,13 +148,11 @@ def testundoredo():
     undoList.append(lista)
     redoList.clear()
     lista = rezultat
-    assert lista == [['4', 'fotoliu', 'poti sta pe elsa concatenam textul', 700, 'ascd'], ['7', 'sticla', 'poti depozita apa in easa concatenam textul', 25, 'asss']]
 
     rezultat = Concatenare("alt text",lista, 7)
     undoList.append(lista)
     redoList.clear()
     lista = rezultat
-    assert lista == [['4', 'fotoliu', 'poti sta pe elsa concatenam textulalt text', 700, 'ascd'], ['7', 'sticla', 'poti depozita apa in easa concatenam textulalt text', 25, 'asss']]
 
     rezultat = Concatenare("asd", lista, 7)
     undoList.append(lista)
@@ -176,30 +162,25 @@ def testundoredo():
     if len(undoList) > 0:
         redoList.append(lista)
         lista = undoList.pop()
-    assert undoList == [[], [['4', 'fotoliu', 'poti sta pe el', 700, 'ascd']], [['4', 'fotoliu', 'poti sta pe el', 700, 'ascd'], ['7', 'sticla', 'poti depozita apa in ea', 25, 'asss']], [['4', 'fotoliu', 'poti sta pe elsa concatenam textul', 700, 'ascd'], ['7', 'sticla', 'poti depozita apa in easa concatenam textul', 25, 'asss']]]
 
     # se face un undo
     if len(undoList) > 0:
         redoList.append(lista)
         lista = undoList.pop()
-    assert undoList == [[], [['4', 'fotoliu', 'poti sta pe el', 700, 'ascd']], [['4', 'fotoliu', 'poti sta pe el', 700, 'ascd'], ['7', 'sticla', 'poti depozita apa in ea', 25, 'asss']]]
 
     #se face un redo
 
     if len(redoList) > 0:
         undoList.append(lista)
         lista = redoList.pop()
-    assert redoList == [[['4', 'fotoliu', 'poti sta pe elsa concatenam textulalt textasd', 700, 'ascd'], ['7', 'sticla', 'poti depozita apa in easa concatenam textulalt textasd', 25, 'asss']]]
 
     if len(undoList) > 0:
         redoList.append(lista)
         lista = undoList.pop()
 
-    assert undoList == [[], [['4', 'fotoliu', 'poti sta pe el', 700, 'ascd']], [['4', 'fotoliu', 'poti sta pe el', 700, 'ascd'], ['7', 'sticla', 'poti depozita apa in ea', 25, 'asss']]]
     if len(undoList) > 0:
         redoList.append(lista)
         lista = undoList.pop()
-    assert undoList == [[], [['4', 'fotoliu', 'poti sta pe el', 700, 'ascd']]]
     if len(undoList) > 0:
         redoList.append(lista)
         lista = undoList.pop()
@@ -240,16 +221,13 @@ def testundoredo():
     if len(undoList) > 0:
         redoList.append(lista)
         lista = undoList.pop()
-    assert undoList == [[], [['1', 'masa', 'se poate manca pe ea', 250, 'aici']], [['1', 'masa', 'se poate manca pe ea', 250, 'aici'], ['2', 'scaun', 'poti sta pe el',100, 'asma']], [['1', 'masa', 'se poate manca pe ea', 250, 'aaaa'], ['2', 'scaun', 'poti sta pe el', 100, 'asma']]]
     #se face inca un undo
     if len(undoList) > 0:
         redoList.append(lista)
         lista = undoList.pop()
-    assert undoList == [[], [['1', 'masa', 'se poate manca pe ea', 250, 'aici']], [['1', 'masa', 'se poate manca pe ea', 250, 'aici'], ['2', 'scaun', 'poti sta pe el', 100, 'asma']]]
 
     #se face un redo
 
     if len(redoList) > 0:
         undoList.append(lista)
         lista = redoList.pop()
-    assert redoList == [[['1', 'masa', 'se poate manca pe ea', 250, 'cccc'], ['2', 'scaun', 'poti sta pe el', 100, 'asma']]]

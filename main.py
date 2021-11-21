@@ -15,10 +15,7 @@ def main():
     runAllTests()
 
     lista = []
-    lista = adaugaObiect(1, "pc", "descriere 1", 4000, "loc1", lista)
-    lista = adaugaObiect(2, "laptop", "descriere 2", 1000, "loc1", lista)
-    lista = adaugaObiect(3, "birou", "descriere 3", 3000, "loc2", lista)
-    lista = adaugaObiect(4, "masa", "descriere 4", 2000, "loc2", lista)
+
 
     while True:
         meniuri()

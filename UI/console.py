@@ -18,27 +18,49 @@ def printMenu():
     print("x. Iesire")
 
 
-def uiAdaugaObiect(lista):
-    id = input("Dati id-ul:")
-    nume = input("Dati numele:")
-    descriere = input("Dati descriere: ")
-    pret = float(input("Dati pretul de achizitie: "))
-    locatie = input("Dati locatia: ")
-    return adaugaObiect(id, nume, descriere, pret, locatie, lista)
+def uiAdaugaObiect(lista,undoList,redoList):
+    try:
+        id=input("Dati id-ul ")
+        nume=input("Dati numele ")
+        descriere=input("Dati descrierea ")
+        pret=float(input("Dati pretul "))
+        locatie=input("Dati locatia ")
+
+        rezultat=adaugaObiect(id, nume, descriere, pret, locatie, lista)
+        undoList.append(lista)
+        redoList.clear()
+        return rezultat
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 
-def uiStergeObiect(lista):
-    id=input("Dati id-ul obiectului de sters:")
-    return stergeObiect(id, lista)
+def uiStergeObiect(lista, undoList, redoList):
+    try:
+        id = input("Dati id-ul obiectului pe care vreti sa il stergeti ")
+        rezultat=stergeObiect(id,lista)
+        undoList.append(lista)
+        redoList.clear()
+        return rezultat
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 
-def uiModificaObiect(lista):
-    id = input("Dati id-ul obiectului de modificat:")
-    nume = input("Dati noul numele:")
-    descriere = input("Dati noua descriere: ")
-    pret = float(input("Dati noul pret de achizitie: "))
-    locatie = input("Dati noua locatie: ")
-    return modificaObiect(id, nume, descriere, pret, locatie, lista)
+def uiModificaObiect(lista,undoList, redoList):
+    try:
+        id = input("Dati id-ul obiectului de modificat ")
+        nume = input("Dati noul nume ")
+        descriere = input("Dati noua descriere ")
+        pret = float(input("Dati noul pret "))
+        locatie = input("Dati noua locatie ")
+        rezultat=modificaObiect(id, nume, descriere, pret, locatie, lista)
+        undoList.append(lista)
+        redoList.clear()
+        return rezultat
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 def uiChangeLocation(lista):
     locatieNoua = input("Dati locatia noua: ")
@@ -84,11 +106,11 @@ def runMenu(lista):
         optiune=input("Dati optiunea: ")
 
         if optiune == "1":
-            lista = uiAdaugaObiect(lista)
+            lista = uiAdaugaObiect(lista,undoList,redoList)
         elif optiune =="2":
-            lista= uiStergeObiect(lista)
+            lista= uiStergeObiect(lista,undoList,redoList)
         elif optiune == "3":
-            lista = uiModificaObiect(lista)
+            lista = uiModificaObiect(lista,undoList,redoList)
         elif optiune =="4":
             lista = uiChangeLocation(lista)
         elif optiune == "5":
