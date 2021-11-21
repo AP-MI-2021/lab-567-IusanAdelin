@@ -1,5 +1,6 @@
 from Domain.Obiect import getLocatie, getPret, getDescriere, getNume, getId
 from Logic.CRUD import adaugaObiect, getById, stergeObiect, modificaObiect
+from Logic.Functionalitati import sumaPreturilor, OrdonareDupaPret
 
 
 def testAdaugaObiect():
@@ -46,3 +47,4 @@ def testModificaObiect():
     assert getDescriere(ObiectVechi) == "Alba"
     assert getPret(ObiectVechi) == 10
     assert getLocatie(ObiectVechi) == "Cls1"
+
